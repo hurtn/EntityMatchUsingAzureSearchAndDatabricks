@@ -42,6 +42,14 @@ Data Ingestion
     -   Ensure data is in GeoJSON format.
 
     -   Eg: \"location\":{\"type\": \"Point\", \"coordinates\": \[49.5328469,8.7268988\]}
+    
+    -   If your data is in another format you can use Spark to reformat, e.g.
+    
+    *\"location\":{\"lat\":50.141925900000004,\"lon\":8.418495100000001}*
+    
+    can be converted by creating a new field called geojson_location using the Spark dataframe API code:
+    
+    *.withColumn(\"geojson_location\",struct(lit(\"Point\").as(\"type\"),array($\"location.lon\",$\"location.lat\").as(\"coordinates\")))*
 
 -   Improving ingestion time:
 
