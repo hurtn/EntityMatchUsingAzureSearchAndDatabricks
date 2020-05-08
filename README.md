@@ -91,13 +91,9 @@ Geo-spatial Queries
 
 ![](media/geofiltering.png)
 
-[Geo.distance filtering]{.underline}
-
 Compared to
 
 ![](media/geoboosint.png)
-
-[Proximity boosting using Scoring Profile]{.underline}
 
 AWS ES to Azure Search Challenges
 =================================
