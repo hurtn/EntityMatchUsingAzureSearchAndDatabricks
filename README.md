@@ -62,7 +62,8 @@ https://docs.microsoft.com/en-us/azure/search/search-performance-optimization
 Azure Search Ingestion Options
 ==============================
 
-![](media/ingestion.png)
+![https://docs.microsoft.com/en-us/azure/search/search-what-is-data-import
+](media/ingestion.png)
 
 Index creation and loading using REST APIs
 ==========================================
