@@ -11,8 +11,10 @@ The search functionality is rich with the following options:
 Getting Started
 ===============
 
-First [create](https://docs.microsoft.com/en-us/azure/search/search-create-service-portal) a basic Azure Search service or using an existing service. Make note of the resource enddpoint/URL and admin key. 
-Launch a Databricks workspace and import the dbc archive of notebooks into your workspace. 
+- First [create](https://docs.microsoft.com/en-us/azure/search/search-create-service-portal) a basic Azure Search service or using an existing service. Make note of the resource enddpoint/URL and admin key. 
+- Launch a Databricks workspace and import the dbc archive of notebooks into your workspace. Start a small 2 node cluster and when running click on the Data section and upload the breweriestomatch.csv file. Click Create Table in Notebook to verify you can view the data. Change first row as header to True to display the data correctly.
+- Navigatet to the Index Build folder and click on the Create and Load Search index notebook.
+
 
 Read the additional information below before running the demo.
 
