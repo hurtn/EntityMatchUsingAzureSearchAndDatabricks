@@ -1,6 +1,6 @@
-# Entity Match with Proximity-boosting Using Azure Search And Azure Databricks
+# Entity Matching with Geospatial Proximity-boosting Using Azure Cognitive Search And Azure Databricks
 
-This set of Databricks notebooks will allow you to create an Azure Search Index, load master data and match entities from an external source in batch mode. In order to conduct the search a RESTful API is invoked using a Python User Defined Function (UDF) The process could be adapted to streaming mode by modifying the UDF and read operations to readstream. The matching notebook includes a threshold parameter (Widget) which can be used to define the cut-off score for which anything result below that score is considered a false-positive.
+This set of Databricks notebooks will allow you to create an Azure Search Index, load master data and match entities from an external source in batch mode. In order to conduct the search, a RESTful API is invoked using a Python User Defined Function (UDF) in Databricks. The process could be adapted to streaming mode by modifying the UDF and read operations to readstream. The matching notebook includes a threshold parameter (Widget) which can be used to define the cut-off score for which anything result below that score is considered a false-positive.
 
 The search functionality is rich with the following options:
 - geo-proximity boosting. If GeoJson 
@@ -8,10 +8,27 @@ The search functionality is rich with the following options:
 - Edit Distance, Jaro Winkler, length ratio scoring anhancements
 - Stop word demotion (reduces affect on score)
 
-Please import the archive of notebooks into your Azure Databricks workspace to get started. Additional information can also be found below.
+Getting Started
+===============
+
+First [create](https://docs.microsoft.com/en-us/azure/search/search-create-service-portal) a basic Azure Search service or using an existing service. Make note of the resource enddpoint/URL and admin key. 
+Launch a Databricks workspace and import the dbc archive of notebooks into your workspace. 
+
+Read the additional information below before running the demo.
 
 ![architecture](media/architecture.png)
 ================================================================================
+
+Scenario
+========
+
+Acme Marketing want to recommend the best breweries to their customers in Greenville County, South Carolina, United States. In order to do this they will harvest information from social networking/recommendation sites such as Foursquare or Trip Advisor and assign these reviews to  a master list of Breweries in the area. The master list was obtained via an open data set from [openupstate.org](https://data.openupstate.org/map/breweries) and slightly modified to suit their requirements. The problem with the data from the external social review sites is that the names (and sometimes locations) are not always accurate therefore they needs a robust search mechanism to cater for different brewery names and inexact location data. In the future, they know they will need to cater for [phonetic searches](https://azure.microsoft.com/en-us/blog/custom-analyzers-in-azure-search/) and [key phrase extraction](https://docs.microsoft.com/en-us/azure/search/cognitive-search-skill-keyphrases).
+
+Solution
+========
+
+Acme have identified that Azure Cognitive Search (aka Knowledge Mining) supports a rich set of search capabilities including a geospatial distance boosting function which promotes breweries closest to the reference location provided to the top of the search results.
+To run the matching solution they will load their master list into an Azure Search index and load the social review data into a Spark dataframe.  Using a UDF they can generate a best match to the master brewery list and then tag breweries with popularity scores and key phrases. Using this data they plan to run their recommendation algorithm to market the breweries to their customers. They have chosen to use Azure Databricks for this Spark based processing.
 
 Benefits of Azure Search
 ========================
