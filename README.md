@@ -1,6 +1,6 @@
 # Entity Matching with Geospatial Proximity-boosting Using Azure Cognitive Search And Azure Databricks
 
-This set of Databricks notebooks will allow you to create an Azure Search Index, load master data and match entities from an external source in batch mode. In order to conduct the search, a RESTful API is invoked using a Python User Defined Function (UDF) in Databricks. The process could be adapted to streaming mode by modifying the UDF and read operations to readstream. The matching notebook includes a threshold parameter (Widget) which can be used to define the cut-off score for which anything result below that score is considered a false-positive.
+This set of Databricks notebooks will allow you to create an Azure Search Index, load master data and match entities from an external source in batch mode. In order to run the matching processes, a RESTful API is invoked using a Python User Defined Function (UDF) in Databricks (Spark). The process could be adapted to streaming mode by modifying the UDF and read operations to readstream. The matching notebook includes a threshold parameter (Widget) which can be used to define the cut-off score for which anything result below that score is considered a false-positive.
 
 The search functionality is rich with the following options:
 - geo-proximity boosting. If GeoJson 
@@ -13,8 +13,8 @@ Getting Started
 
 - First [create](https://docs.microsoft.com/en-us/azure/search/search-create-service-portal) a basic Azure Search service or using an existing service. Make note of the resource enddpoint/URL and admin key. 
 - Launch a Databricks workspace and import the dbc archive of notebooks into your workspace. Start a small 2 node cluster and when running click on the Data section and upload the breweriestomatch.csv file. Click Create Table in Notebook to verify you can view the data. Change first row as header to True to display the data correctly.
-- Navigatet to the Index Build folder and click on the Create and Load Search index notebook.
-
+- Navigatet to the Index Build folder and click on the Create and Load Search index notebook. Populate the variables between lines 6-8 with details about your search service. Each cell has descriptive information and sample demo data can be loaded into Azure Search from the notebooks or your can adjust the configuratoin to point to your own data source.
+- Navigate to the searchUDF or advancedSearchUDF notebook depending on whether you require additionl scoring algorithms such as Edit distance. Populate the variables between lines 14-16 with details about your search service. Run each cell and adjust the theshold parameter as required to illiminate false positives.
 
 Read the additional information below before running the demo.
 
